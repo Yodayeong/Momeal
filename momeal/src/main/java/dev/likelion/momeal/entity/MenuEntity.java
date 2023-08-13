@@ -10,14 +10,13 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class MenuEntity extends BaseEntity{
+public class MenuEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long menuId;
 
     private String title;
     private int price;
     private String picture;
-    private int amount;
     private String restaurant;
 }

@@ -12,13 +12,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class UserEntity extends BaseEntity {
+public class UserEntity {
     @Id
-    private String userid; // 사용자 아이디
+    private String email; // 사용자 이메일(아이디)
 
-    private String username; // 사용자 이름
+    private String userName; // 사용자 이름
     private String password; // 사용자 비밀번호
-    private String email; // 사용자 이메일
     private Boolean role; // 관리자 여부
 
     @OneToMany(
@@ -28,10 +27,4 @@ public class UserEntity extends BaseEntity {
     )
     private List<OrderEntity> orderEntityList = new ArrayList<>();
 
-    @OneToMany(
-            targetEntity = CartEntity.class,
-            fetch = FetchType.LAZY,
-            mappedBy = "userEntity"
-    )
-    private List<CartEntity> cartEntityList = new ArrayList<>();
 }

@@ -3,6 +3,8 @@ package dev.likelion.momeal.entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -14,25 +16,20 @@ import java.util.List;
 @Setter
 @Entity
 @RequiredArgsConstructor
-public class OrderEntity extends BaseEntity{
+public class OrderEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int amount;
-    private Instant date;
+    private Long orderId;
+    private int price;
 
-    @OneToMany(
-            targetEntity = TicketEntity.class,
-            fetch = FetchType.LAZY,
-            mappedBy = "orderEntity"
-    )
-    private List<TicketEntity> ticketEntityList = new ArrayList<>();
+    @CreatedDate
+    @Column(updatable = false)
+    private Instant orderDate;
 
     @ManyToOne(
             targetEntity = UserEntity.class,
             fetch = FetchType.LAZY
     )
     private UserEntity userEntity;
-
 
 }
