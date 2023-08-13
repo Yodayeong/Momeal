@@ -1,0 +1,28 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/momeal_likelion
+    username: momeal
+    password: momeal
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    mvc:
+      path match:
+        matching-strategy: ant_path_matcher
+    messages:
+      basename: messages
+
+    security:
+      user:
+        name: admin
+        password: admin
+
+
