@@ -10,11 +10,11 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class UserDto {
 
-    private String username;
-    private String userid;
+    private String userName;
     private String password;
     private String passwordCheck;
     private String email;
+    private boolean role;
 
 }
 

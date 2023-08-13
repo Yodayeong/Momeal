@@ -21,25 +21,30 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserDto dto){
-        boolean isAuthenticated = userService.authenticateUser(dto.getUserid(),dto.getPassword());
+    // 로그인
+    @PostMapping("login")
+    public ResponseEntity<Boolean> login(@RequestBody UserDto dto){
+        boolean isAuthenticated = userService.authenticateUser(dto.getEmail(),dto.getPassword());
 
         if (isAuthenticated) {
-            return new ResponseEntity<>("로그인 성공", HttpStatus.OK);
+            return new ResponseEntity<>(dto.isRole(),HttpStatus.OK); // 200
         } else {
-            return new ResponseEntity<>("로그인 실패", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // 401
         }
 
     }
 
+    // 회원가입
     @PostMapping("signup")
-    public ResponseEntity<String> signupRequest(
+    public ResponseEntity signupRequest(
             @RequestBody UserDto dto
     ){
         return userService.signupRequest(dto);
     }
 
-
-
+    // 이메일 중복확인
+    @PostMapping("signup/duplicatecheck")
+    public ResponseEntity<Boolean> duplicatedEmailCheck(@RequestBody UserDto dto){
+        return userService.duplicateCheckRequest(dto.getEmail());
+    }
 }

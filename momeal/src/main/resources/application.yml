@@ -20,9 +20,6 @@ spring:
     messages:
       basename: messages
 
-    security:
-      user:
-        name: admin
-        password: admin
+
 
 

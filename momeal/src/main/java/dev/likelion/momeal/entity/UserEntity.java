@@ -18,7 +18,7 @@ public class UserEntity {
 
     private String userName; // 사용자 이름
     private String password; // 사용자 비밀번호
-    private Boolean role; // 관리자 여부
+    private boolean role; // 관리자 여부
 
     @OneToMany(
             targetEntity = OrderEntity.class,
