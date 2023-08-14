@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -29,21 +30,12 @@ public class MenuDao {
         menuEntity.setTitle(dto.getTitle());
         menuEntity.setPrice(dto.getPrice());
         menuEntity.setPicture(dto.getPicture());
-        menuEntity.setAmount(dto.getAmount());
         menuEntity.setRestaurant(dto.getRestaurant());
         this.menuRepository.save(menuEntity);
     }
 
-    public MenuEntity readMenu(int id) {
-        Optional<MenuEntity> menuEntity = this.menuRepository.findById((long) id);
-        if(menuEntity.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        return menuEntity.get();
-    }
-
-    public Iterator<MenuEntity> readMenuAll() {
-        return this.menuRepository.findAll().iterator();
+    public Iterator readMenu(String restaurant) {
+        return this.menuRepository.findAllByRestaurant(restaurant).iterator();
     }
 
     public void updateMenu(int id, MenuDto dto) {
@@ -55,7 +47,6 @@ public class MenuDao {
         menuEntity.setTitle(dto.getTitle() == null ? menuEntity.getTitle() : dto.getTitle());
         menuEntity.setPrice(Integer.valueOf(dto.getPrice()) == null ? menuEntity.getPrice() : dto.getPrice());
         menuEntity.setPicture(dto.getPicture() == null ? menuEntity.getPicture() : dto.getPicture());
-        menuEntity.setAmount(Integer.valueOf(dto.getAmount()) == null ? menuEntity.getAmount() : dto.getAmount());
         menuEntity.setRestaurant(dto.getRestaurant() == null ? menuEntity.getRestaurant() : dto.getRestaurant());
         this.menuRepository.save(menuEntity);
     }
