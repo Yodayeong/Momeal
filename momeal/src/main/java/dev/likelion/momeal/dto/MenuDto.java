@@ -1,31 +1,21 @@
 package dev.likelion.momeal.dto;
 
 public class MenuDto {
-    private Long id;
+    private Long menuId;
     private String title;
     private int price;
     private String picture;
-    private int amount;
     private String restaurant;
 
     public MenuDto() {
     }
 
-    public MenuDto(Long id, String title, int price, String picture, int amount, String restaurant) {
-        this.id = id;
-        this.title = title;
-        this.price = price;
-        this.picture = picture;
-        this.amount = amount;
-        this.restaurant = restaurant;
+    public Long getMenuId() {
+        return menuId;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setMenuId(Long menuId) {
+        this.menuId = menuId;
     }
 
     public String getTitle() {
@@ -52,14 +42,6 @@ public class MenuDto {
         this.picture = picture;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public String getRestaurant() {
         return restaurant;
     }
@@ -71,11 +53,10 @@ public class MenuDto {
     @Override
     public String toString() {
         return "MenuDto{" +
-                "id=" + id +
+                "menuId=" + menuId +
                 ", title='" + title + '\'' +
                 ", price=" + price +
                 ", picture='" + picture + '\'' +
-                ", amount=" + amount +
                 ", restaurant='" + restaurant + '\'' +
                 '}';
     }
