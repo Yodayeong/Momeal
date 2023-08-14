@@ -10,6 +10,14 @@ public class MenuDto {
     public MenuDto() {
     }
 
+    public MenuDto(Long menuId, String title, int price, String picture, String restaurant) {
+        this.menuId = menuId;
+        this.title = title;
+        this.price = price;
+        this.picture = picture;
+        this.restaurant = restaurant;
+    }
+
     public Long getMenuId() {
         return menuId;
     }

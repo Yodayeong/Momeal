@@ -27,30 +27,17 @@ public class MenuService {
         this.menuDao.createMenu(menuDto);
     }
 
-    public MenuDto readMenu(int id) {
-        MenuEntity menuEntity = this.menuDao.readMenu(id);
-        return new MenuDto(
-                menuEntity.getId(),
-                menuEntity.getTitle(),
-                menuEntity.getPrice(),
-                menuEntity.getPicture(),
-                menuEntity.getAmount(),
-                menuEntity.getRestaurant()
-        );
-    }
-
-    public List<MenuDto> readMenuAll() {
-        Iterator<MenuEntity> iterator = this.menuDao.readMenuAll();
+    public List<MenuDto> readMenu(String restaurant) {
+        Iterator<MenuEntity> iterator = this.menuDao.readMenu(restaurant);
         List<MenuDto> menuDtoList = new ArrayList<>();
 
         while(iterator.hasNext()) {
             MenuEntity menuEntity = iterator.next();
             menuDtoList.add(new MenuDto(
-                    menuEntity.getId(),
+                    menuEntity.getMenuId(),
                     menuEntity.getTitle(),
                     menuEntity.getPrice(),
                     menuEntity.getPicture(),
-                    menuEntity.getAmount(),
                     menuEntity.getRestaurant()
             ));
         }
