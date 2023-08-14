@@ -22,21 +22,19 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @PostMapping
+    @PostMapping("register")
     @ResponseStatus(HttpStatus.CREATED)
     public void createMenu(@RequestBody MenuDto dto) {
         this.menuService.createMenu(dto);
         logger.info(dto.toString());
     }
 
-    @GetMapping("{id}")
-    public MenuDto menuDto(@PathVariable("id") int id) {
-        return this.menuService.readMenu(id);
-    }
-
-    @GetMapping("")
-    public List<MenuDto> readMenuAll() {
-        return this.menuService.readMenuAll();
+    @GetMapping("{restaurant}/menu")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public List<MenuDto> readMenu(
+            @PathVariable("restaurant") String restaurant
+    ) {
+        return this.menuService.readMenu(restaurant);
     }
 
     @PutMapping("{id}")
