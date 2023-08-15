@@ -25,12 +25,12 @@ public class MenuDao {
         this.menuRepository = menuRepository;
     }
 
-    public void createMenu(MenuDto dto, String saveFileName) {
+    public void createMenu(String title, int price, String restaurant, String saveFileName) {
         MenuEntity menuEntity = new MenuEntity();
-        menuEntity.setTitle(dto.getTitle());
-        menuEntity.setPrice(dto.getPrice());
+        menuEntity.setTitle(title);
+        menuEntity.setPrice(price);
         menuEntity.setPicture(saveFileName);
-        menuEntity.setRestaurant(dto.getRestaurant());
+        menuEntity.setRestaurant(restaurant);
         this.menuRepository.save(menuEntity);
     }
 

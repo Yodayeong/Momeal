@@ -27,7 +27,7 @@ public class MenuService {
         this.menuDao = menuDao;
     }
 
-    public void createMenu(MenuDto menuDto, MultipartFile multipartFile) throws IOException {
+    public void createMenu(String title, int price, String restaurant, MultipartFile multipartFile) throws IOException {
         String originalFileName = multipartFile.getOriginalFilename();
         String saveFileName = createSaveFileName(originalFileName);
 
@@ -37,7 +37,7 @@ public class MenuService {
         //DB에 정보 저장
         String contentType = multipartFile.getContentType();
 
-        this.menuDao.createMenu(menuDto, saveFileName);
+        this.menuDao.createMenu(title, price, restaurant, saveFileName);
     }
 
     //파일 저장 이름 만들기
