@@ -4,10 +4,17 @@ public class MenuDto {
     private Long menuId;
     private String title;
     private int price;
-    private String picture;
     private String restaurant;
+    private String picture;
 
     public MenuDto() {
+    }
+
+    public MenuDto(Long menuId, String title, int price, String restaurant) {
+        this.menuId = menuId;
+        this.title = title;
+        this.price = price;
+        this.restaurant = restaurant;
     }
 
     public MenuDto(Long menuId, String title, int price, String picture, String restaurant) {
