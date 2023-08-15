@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -24,7 +25,10 @@ public class MenuController {
 
     @PostMapping("register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createMenu(@RequestBody MenuDto dto) {
+    public void createMenu(
+            @RequestBody MenuDto dto,
+            @RequestPart(value = "multipartFile")MultipartFile multipartFile
+        ) {
         this.menuService.createMenu(dto);
         logger.info(dto.toString());
     }
