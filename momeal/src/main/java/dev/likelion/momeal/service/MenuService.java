@@ -37,7 +37,7 @@ public class MenuService {
         //DB에 정보 저장
         String contentType = multipartFile.getContentType();
 
-        this.menuDao.createMenu(title, price, restaurant, saveFileName);
+        this.menuDao.createMenu(title, price, restaurant, "/Users/yodayeong/Desktop/momeal_img/" + saveFileName);
     }
 
     //파일 저장 이름 만들기
@@ -55,7 +55,7 @@ public class MenuService {
 
     //fullPath 만들기
     private String getFullPath(String saveFileName) {
-        return "/Users/yodayeong/Desktop/momeal_img" + saveFileName;
+        return "/Users/yodayeong/Desktop/momeal_img/" + saveFileName;
     }
 
     public List<MenuDto> readMenu(String restaurant) {

@@ -35,7 +35,7 @@ public class MenuController {
             @RequestParam("price") int price,
             @RequestParam("restaurant") String restaurant,
             @RequestParam("picture") MultipartFile multipartFile
-        ) throws IOException {
+    ) throws IOException {
 
         logger.info("title: " + title);
         logger.info("price: " + price);
@@ -50,6 +50,7 @@ public class MenuController {
     public List<MenuDto> readMenu(
             @PathVariable("restaurant") String restaurant
     ) {
+
         return this.menuService.readMenu(restaurant);
     }
 
