@@ -26,8 +26,6 @@ Mobile Meal Ticket Service for Likelion 11th Hackarthon
   - 이미 올라간 사진의 경로는 불러 오면 되고, 새로 업로드 할 사진은, 지정 경로에 저장 및 DB에 파일 정보 저장 작업을 해주면 된다.
   - 로컬에서의 경우를 구현하여 보았다.
 
-- (이미지 파일 업로드)
-
 - `MenuController`
 
   ```java
