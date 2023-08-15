@@ -9,7 +9,7 @@ spring:
     password: momeal
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: false
     properties:
       hibernate:
@@ -19,9 +19,6 @@ spring:
         matching-strategy: ant_path_matcher
     messages:
       basename: messages
-
-upload:
-  path: /Users/yodayeong/Desktop/momeal_img
 
 
 

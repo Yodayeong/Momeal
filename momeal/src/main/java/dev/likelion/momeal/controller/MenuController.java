@@ -50,6 +50,7 @@ public class MenuController {
     public List<MenuDto> readMenu(
             @PathVariable("restaurant") String restaurant
     ) {
+
         return this.menuService.readMenu(restaurant);
     }
 

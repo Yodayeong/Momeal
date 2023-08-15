@@ -55,7 +55,7 @@ public class MenuService {
 
     //fullPath 만들기
     private String getFullPath(String saveFileName) {
-        return "/Users/yodayeong/Desktop/momeal_img" + saveFileName;
+        return "/Users/yodayeong/Desktop/momeal_img/" + saveFileName;
     }
 
     public List<MenuDto> readMenu(String restaurant) {
