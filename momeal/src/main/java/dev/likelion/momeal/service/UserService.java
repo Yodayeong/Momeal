@@ -43,7 +43,6 @@ public class UserService {
 
     public ResponseEntity<Boolean> duplicateCheckRequest(String email) {
         boolean isDuplicated = userRepository.existsByEmail(email);
-
         return new ResponseEntity<>(isDuplicated,HttpStatus.OK);
     }
 
