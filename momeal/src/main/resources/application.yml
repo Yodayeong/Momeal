@@ -20,6 +20,9 @@ spring:
     messages:
       basename: messages
 
+upload:
+  path: /Users/yodayeong/Desktop/momeal_img
+
 
 
 
