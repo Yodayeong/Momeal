@@ -23,8 +23,8 @@ public class OrderService {
         UserEntity user = userRepository.findByEmail(kakaoApproveResponse.getPartner_user_id()); //userEmail
         orderEntity.setUserEntity(user);
 
-        String orderDate = kakaoApproveResponse.getApproved_at();
-        orderEntity.setOrderDate(orderDate.substring(0, kakaoApproveResponse.getApproved_at().indexOf('T')));
+//        String orderDate = kakaoApproveResponse.getApproved_at();
+//        orderEntity.setOrderDate(orderDate.substring(0, kakaoApproveResponse.getApproved_at().indexOf('T')));
         orderRepository.save(orderEntity);
     }
 }
