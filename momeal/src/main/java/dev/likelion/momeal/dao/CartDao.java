@@ -19,7 +19,7 @@ public class CartDao {
         this.cartRepository = cartRepository;
     }
 
-    public void createCart() {
-
+    public void createCart(int price, int quantity, String email) {
+        
     }
 }

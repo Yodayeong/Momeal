@@ -1,5 +1,6 @@
 package dev.likelion.momeal.service;
 
+import dev.likelion.momeal.dao.CartDao;
 import dev.likelion.momeal.dto.KakaoApproveResponse;
 import dev.likelion.momeal.dto.KakaoReadyResponse;
 import dev.likelion.momeal.exception.BusinessLogicException;
@@ -25,6 +26,7 @@ public class KakaoPayService {
     static final String admin_Key = "d977d90a404ef1993971337228f56e77";
     private KakaoApproveResponse kakaoApproveResponse;
     private KakaoReadyResponse kakaoReady;
+    private final CartDao cartDao;
 
     public static Claims decodeToken(String pgToken, String secretKey) {
         try {
@@ -41,6 +43,9 @@ public class KakaoPayService {
 
 
     public KakaoReadyResponse kakaoPayReady(KakaoApproveResponse kakaoApproveResponse) {
+        //장바구니 생성
+        this.cartDao.createCart(Integer.valueOf(kakaoApproveResponse.getItem_name()), kakaoApproveResponse.getQuantity(), kakaoApproveResponse.getPartner_user_id());
+
         // 카카오페이 요청 양식
         MultiValueMap parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
