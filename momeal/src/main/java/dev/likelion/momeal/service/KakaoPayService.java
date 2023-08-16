@@ -64,7 +64,7 @@ public class KakaoPayService {
         parameters.add("cid", cid);
         parameters.add("tid", kakaoReady.getTid());
         parameters.add("partner_order_id", "주문 아이디");
-        parameters.add("partner_user_id", "yeevin@naver.com");
+        parameters.add("partner_user_id", "loveyebin077@naver.com");
         parameters.add("pg_token", pgToken);
 
         // 파라미터, 헤더

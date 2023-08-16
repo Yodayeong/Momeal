@@ -49,7 +49,6 @@ public class KakaoController {
      */
     @GetMapping("/fail")
     public void fail() {
-
         throw new BusinessLogicException(ExceptionCode.PAY_FAILED);
     }
 

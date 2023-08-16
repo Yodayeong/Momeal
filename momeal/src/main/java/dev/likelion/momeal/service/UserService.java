@@ -28,9 +28,7 @@ public class UserService {
     }
 
     public ResponseEntity signupRequest(UserDto dto){
-        if(!dto.getPassword().equals(dto.getPasswordCheck())){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
+
         UserEntity newUser = new UserEntity();
         newUser.setUserName(dto.getUserName());
         newUser.setEmail(dto.getEmail());
