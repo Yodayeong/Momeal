@@ -15,11 +15,8 @@ public class CartEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartId;
 
-    private int total_amount;
+    private int price;
     private int quantity;
-    private int partner_order_id;
-    private String item_name;
-    private int tax_free_amount;
 
     @ManyToOne(
             targetEntity = UserEntity.class,
