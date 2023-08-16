@@ -18,9 +18,10 @@ public class KakaoApproveResponse {
     private String payment_method_type; // 결제 수단
     private int total_amount; // 결제 금액 정보
     private String item_name; // 상품명
+    private int tax_free_amount; // 상품 비과세 금액
     private int quantity; // 상품 수량
-    private String created_at; // 결제 요청 시간
+//    private String created_at; // 결제 요청 시간
     private String approved_at; // 결제 승인 시간
-    private String payload; // 결제 승인 요청에 대해 저장 값, 요청 시 전달 내용
+//    private String payload; // 결제 승인 요청에 대해 저장 값, 요청 시 전달 내용
 
 }

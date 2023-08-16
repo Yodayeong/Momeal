@@ -22,14 +22,11 @@ public class OrderEntity{
     private Long orderId;
     private int price;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private Instant orderDate;
+    private String orderDate;
 
     @ManyToOne(
             targetEntity = UserEntity.class,
             fetch = FetchType.LAZY
     )
     private UserEntity userEntity;
-
 }

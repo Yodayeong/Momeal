@@ -1,5 +1,7 @@
 package dev.likelion.momeal.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import dev.likelion.momeal.dto.KakaoApproveResponse;
 import dev.likelion.momeal.dto.KakaoReadyResponse;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import static org.springframework.security.config.Elements.JWT;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -21,18 +25,17 @@ public class KakaoPayService {
     private KakaoReadyResponse kakaoReady;
 
 
-    public KakaoReadyResponse kakaoPayReady() {
-
+    public KakaoReadyResponse kakaoPayReady(KakaoApproveResponse kakaoApproveResponse) {
+        System.out.println(kakaoApproveResponse);
         // 카카오페이 요청 양식
         MultiValueMap parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
-        parameters.add("partner_order_id", "가맹점 주문 번호");
-        parameters.add("partner_user_id", "가맹점 회원 ID");
-        parameters.add("item_name", "상품명");
-        parameters.add("quantity", 1);
-        parameters.add("total_amount", 5000);
-        parameters.add("vat_amount", 0);
-        parameters.add("tax_free_amount", 0);
+        parameters.add("partner_order_id", kakaoApproveResponse.getPartner_order_id());
+        parameters.add("partner_user_id", kakaoApproveResponse.getPartner_user_id());
+        parameters.add("item_name", kakaoApproveResponse.getItem_name());
+        parameters.add("quantity", kakaoApproveResponse.getQuantity());
+        parameters.add("total_amount", kakaoApproveResponse.getTotal_amount());
+        parameters.add("tax_free_amount",kakaoApproveResponse.getTax_free_amount());
         parameters.add("approval_url", "http://localhost:8088/kakao/success"); // 성공 시 redirect url
         parameters.add("cancel_url", "http://localhost:8088/kakao/cancel"); // 취소 시 redirect url
         parameters.add("fail_url", "http://localhost:8088/kakao/fail"); // 실패 시 redirect url
@@ -51,7 +54,6 @@ public class KakaoPayService {
         return kakaoReady;
     }
 
-
     /**
      * 결제 완료 승인
      */
@@ -61,8 +63,8 @@ public class KakaoPayService {
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
         parameters.add("tid", kakaoReady.getTid());
-        parameters.add("partner_order_id", "가맹점 주문 번호");
-        parameters.add("partner_user_id", "가맹점 회원 ID");
+        parameters.add("partner_order_id", "주문 아이디");
+        parameters.add("partner_user_id", "yeevin@naver.com");
         parameters.add("pg_token", pgToken);
 
         // 파라미터, 헤더
