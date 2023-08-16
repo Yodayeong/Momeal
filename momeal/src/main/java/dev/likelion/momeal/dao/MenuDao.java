@@ -46,8 +46,21 @@ public class MenuDao {
         MenuEntity menuEntity = targetEntity.get();
         menuEntity.setTitle(dto.getTitle() == null ? menuEntity.getTitle() : dto.getTitle());
         menuEntity.setPrice(Integer.valueOf(dto.getPrice()) == null ? menuEntity.getPrice() : dto.getPrice());
-        menuEntity.setPicture(dto.getPicture() == null ? menuEntity.getPicture() : dto.getPicture());
+        menuEntity.setPicture(menuEntity.getPicture());
         menuEntity.setRestaurant(dto.getRestaurant() == null ? menuEntity.getRestaurant() : dto.getRestaurant());
+        this.menuRepository.save(menuEntity);
+    }
+
+    public void updateMenuPicture(int id, String saveFileName) {
+        Optional<MenuEntity> targetEntity = menuRepository.findById(Long.valueOf(id));
+        if(targetEntity.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        MenuEntity menuEntity = targetEntity.get();
+        //menuEntity.setTitle(dto.getTitle() == null ? menuEntity.getTitle() : dto.getTitle());
+        //menuEntity.setPrice(Integer.valueOf(dto.getPrice()) == null ? menuEntity.getPrice() : dto.getPrice());
+        menuEntity.setPicture(saveFileName);
+        //menuEntity.setRestaurant(dto.getRestaurant() == null ? menuEntity.getRestaurant() : dto.getRestaurant());
         this.menuRepository.save(menuEntity);
     }
 

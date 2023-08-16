@@ -63,6 +63,20 @@ public class MenuController {
         this.menuService.updateMenu(id, dto);
     }
 
+    @PutMapping(
+            value = "/{id}/picture",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateMenu(
+            @PathVariable("id") int id,
+            @RequestParam("picture") MultipartFile multipartFile
+    ) throws IOException {
+        logger.info("picture: " + multipartFile.getOriginalFilename());
+
+        this.menuService.updateMenuPicture(id, multipartFile);
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteMenu(@PathVariable("id") int id) {

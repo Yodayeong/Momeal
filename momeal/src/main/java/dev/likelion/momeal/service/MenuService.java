@@ -79,6 +79,19 @@ public class MenuService {
         this.menuDao.updateMenu(id, menuDto);
     }
 
+    public void updateMenuPicture(int id, MultipartFile multipartFile) throws IOException {
+        String originalFileName = multipartFile.getOriginalFilename();
+        String saveFileName = createSaveFileName(originalFileName);
+
+        //서버에 파일 저장
+        multipartFile.transferTo(new File(getFullPath(saveFileName)));
+
+        //DB에 정보 저장
+        String contentType = multipartFile.getContentType();
+
+        this.menuDao.updateMenuPicture(id, "/Users/yodayeong/Desktop/momeal_img/" + saveFileName);
+    }
+
     public void deleteMenu(int id) {
         this.menuDao.deleteMenu(id);
     }

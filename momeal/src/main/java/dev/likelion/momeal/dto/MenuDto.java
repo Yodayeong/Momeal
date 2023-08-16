@@ -17,12 +17,12 @@ public class MenuDto {
         this.restaurant = restaurant;
     }
 
-    public MenuDto(Long menuId, String title, int price, String picture, String restaurant) {
+    public MenuDto(Long menuId, String title, int price, String restaurant, String picture) {
         this.menuId = menuId;
         this.title = title;
         this.price = price;
-        this.picture = picture;
         this.restaurant = restaurant;
+        this.picture = picture;
     }
 
     public Long getMenuId() {
