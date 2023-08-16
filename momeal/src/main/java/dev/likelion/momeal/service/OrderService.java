@@ -25,6 +25,7 @@ public class OrderService {
 
         String orderDate = kakaoApproveResponse.getApproved_at();
         orderEntity.setOrderDate(orderDate.substring(0, kakaoApproveResponse.getApproved_at().indexOf('T')));
+        orderEntity.setQuantity(kakaoApproveResponse.getQuantity());
         orderRepository.save(orderEntity);
     }
 }

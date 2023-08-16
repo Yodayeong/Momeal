@@ -21,7 +21,6 @@ public class OrderEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
     private int price;
-
     private String orderDate;
     private int quantity;
 
