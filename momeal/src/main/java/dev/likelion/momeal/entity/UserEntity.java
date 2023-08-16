@@ -27,4 +27,11 @@ public class UserEntity {
     )
     private List<OrderEntity> orderEntityList = new ArrayList<>();
 
+    @OneToMany(
+            targetEntity = CartEntity.class,
+            fetch = FetchType.LAZY,
+            mappedBy = "userEntity"
+    )
+    private List<CartEntity> cartEntityList = new ArrayList<>();
+
 }
