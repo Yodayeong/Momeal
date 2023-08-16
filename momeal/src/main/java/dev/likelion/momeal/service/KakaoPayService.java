@@ -28,19 +28,6 @@ public class KakaoPayService {
     private KakaoReadyResponse kakaoReady;
     private final CartDao cartDao;
 
-    public static Claims decodeToken(String pgToken, String secretKey) {
-        try {
-            Claims claims = Jwts.parser()
-                    .setSigningKey(admin_Key)
-                    .parseClaimsJws(pgToken)
-                    .getBody();
-            return claims;
-        } catch (Exception e) {
-            // 예외 처리
-            throw new BusinessLogicException(ExceptionCode.INVALID_TOKEN);
-        }
-    }
-
 
     public KakaoReadyResponse kakaoPayReady(KakaoApproveResponse kakaoApproveResponse) {
         //장바구니 생성
@@ -76,14 +63,15 @@ public class KakaoPayService {
     /**
      * 결제 완료 승인
      */
-    public KakaoApproveResponse ApproveResponse(String pgToken, String email) {
+    public KakaoApproveResponse ApproveResponse(String pgToken) {
+
 
         // 카카오 요청
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
         parameters.add("tid", kakaoReady.getTid());
         parameters.add("partner_order_id", "101");
-        parameters.add("partner_user_id", email);
+        parameters.add("partner_user_id", "momeal@naver.com");
         parameters.add("pg_token", pgToken);
 
         // 파라미터, 헤더

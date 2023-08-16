@@ -9,10 +9,13 @@ import dev.likelion.momeal.repository.OrderRepository;
 import dev.likelion.momeal.service.KakaoPayService;
 import dev.likelion.momeal.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -60,15 +63,18 @@ public class KakaoController {
 
     @GetMapping("/success")
     public ResponseEntity afterPayRequest(
-            @RequestParam("pg_token") String pgToken,
-            Principal principal
+            @RequestParam("pg_token") String pgToken
     ){
-        String username = principal.getName();
 
-        KakaoApproveResponse kakaoApprove = kakaoPayService.ApproveResponse(pgToken, username); // token으로 승인처리
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        String username = ((UserDetails) principal).getUsername();
+//        System.out.println(username);
+
+        KakaoApproveResponse kakaoApprove = kakaoPayService.ApproveResponse(pgToken); // token으로 승인처리
         orderService.KakaoResponseToOrder(kakaoApprove); // order_Entity 테이블에 저장
 
         return new ResponseEntity<>(kakaoApprove,HttpStatus.OK);
+
     }
 
 
