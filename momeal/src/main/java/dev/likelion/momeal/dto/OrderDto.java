@@ -15,5 +15,6 @@ public class OrderDto {
     private int price;
     private String orderDate;
     private String email;
+    private int quantity;
 
 }

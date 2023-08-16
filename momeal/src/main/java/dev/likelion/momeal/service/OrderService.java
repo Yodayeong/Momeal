@@ -16,6 +16,7 @@ import java.time.Instant;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
+
     public void KakaoResponseToOrder(KakaoApproveResponse kakaoApproveResponse){
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setPrice(kakaoApproveResponse.getTotal_amount()); // 가격
