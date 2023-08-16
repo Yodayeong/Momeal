@@ -2,6 +2,7 @@ package dev.likelion.momeal.controller;
 
 import dev.likelion.momeal.dto.OrderDto;
 import dev.likelion.momeal.dto.UserDto;
+import dev.likelion.momeal.dto.UserTickets;
 import dev.likelion.momeal.entity.OrderEntity;
 import dev.likelion.momeal.entity.UserEntity;
 import dev.likelion.momeal.repository.OrderRepository;
@@ -36,13 +37,13 @@ public class OrderController {
 
         List<OrderEntity> tickets = orderRepository.findByEmail(email);
 
-        List<OrderDto> orderList = new ArrayList<>();
+        List<UserTickets> orderList = new ArrayList<>();
         for (OrderEntity ticket : tickets) {
-            OrderDto orderDto = new OrderDto();
-            orderDto.setPrice(ticket.getPrice());
-            orderDto.setQuantity(ticket.getQuantity());
+            UserTickets userTickets = new UserTickets();
+            userTickets.setPrice(ticket.getPrice());
+            userTickets.setQuantity(ticket.getQuantity());
             // 필요한 다른 정보도 추가할 수 있음
-            orderList.add(orderDto);
+            orderList.add(userTickets);
         }
 
         // OrderDto 리스트를 ResponseEntity에 담아 반환
