@@ -23,5 +23,7 @@ public class CartDao {
         cartEntity.setPrice(price);
         cartEntity.setQuantity(quantity);
         cartEntity.setUserEntity(userRepository.findByEmail(email));
+
+        cartRepository.save(cartEntity);
     }
 }

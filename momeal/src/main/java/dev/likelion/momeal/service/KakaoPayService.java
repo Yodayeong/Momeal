@@ -76,21 +76,14 @@ public class KakaoPayService {
     /**
      * 결제 완료 승인
      */
-    public KakaoApproveResponse ApproveResponse(String pgToken) {
-
-        Claims claims = decodeToken(pgToken, admin_Key);
-
-        String partnerOrderId = claims.get("partner_order_id", String.class);
-        String partnerUserId = claims.get("partner_user_id", String.class);
-        System.out.println(partnerUserId);
-        System.out.println(partnerOrderId);
+    public KakaoApproveResponse ApproveResponse(String pgToken, String email) {
 
         // 카카오 요청
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
         parameters.add("tid", kakaoReady.getTid());
-        parameters.add("partner_order_id", "주문 아이디");
-        parameters.add("partner_user_id", "momeal@naver.com");
+        parameters.add("partner_order_id", "101");
+        parameters.add("partner_user_id", email);
         parameters.add("pg_token", pgToken);
 
         // 파라미터, 헤더

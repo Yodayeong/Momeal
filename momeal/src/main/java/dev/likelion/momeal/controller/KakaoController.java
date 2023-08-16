@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("kakao")
@@ -57,10 +59,13 @@ public class KakaoController {
      */
 
     @GetMapping("/success")
-    public ResponseEntity afterPayRequest
-    (@RequestParam("pg_token") String pgToken){
+    public ResponseEntity afterPayRequest(
+            @RequestParam("pg_token") String pgToken,
+            Principal principal
+    ){
+        String username = principal.getName();
 
-        KakaoApproveResponse kakaoApprove = kakaoPayService.ApproveResponse(pgToken); // token으로 승인처리
+        KakaoApproveResponse kakaoApprove = kakaoPayService.ApproveResponse(pgToken, username); // token으로 승인처리
         orderService.KakaoResponseToOrder(kakaoApprove); // order_Entity 테이블에 저장
 
         return new ResponseEntity<>(kakaoApprove,HttpStatus.OK);

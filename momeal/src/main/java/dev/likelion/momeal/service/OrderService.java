@@ -18,15 +18,18 @@ public class OrderService {
     private final UserRepository userRepository;
 
     public void KakaoResponseToOrder(KakaoApproveResponse kakaoApproveResponse){
+        //Order에 정보 저장
         OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setPrice(kakaoApproveResponse.getTotal_amount()); // 가격
+        orderEntity.setPrice(Integer.valueOf(kakaoApproveResponse.getItem_name()));
 
         UserEntity user = userRepository.findByEmail(kakaoApproveResponse.getPartner_user_id()); //userEmail
         orderEntity.setUserEntity(user);
 
-//        String orderDate = kakaoApproveResponse.getApproved_at();
-//        orderEntity.setOrderDate(orderDate.substring(0, kakaoApproveResponse.getApproved_at().indexOf('T')));
+        String orderDate = kakaoApproveResponse.getApproved_at();
+        orderEntity.setOrderDate(orderDate.substring(0, kakaoApproveResponse.getApproved_at().indexOf('T')));
+
         orderEntity.setQuantity(kakaoApproveResponse.getQuantity());
+
         orderRepository.save(orderEntity);
     }
 }
