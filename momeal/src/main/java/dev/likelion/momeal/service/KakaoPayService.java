@@ -1,9 +1,11 @@
 package dev.likelion.momeal.service;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import dev.likelion.momeal.dto.KakaoApproveResponse;
 import dev.likelion.momeal.dto.KakaoReadyResponse;
+import dev.likelion.momeal.exception.BusinessLogicException;
+import dev.likelion.momeal.exception.ExceptionCode;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,9 +26,21 @@ public class KakaoPayService {
     private KakaoApproveResponse kakaoApproveResponse;
     private KakaoReadyResponse kakaoReady;
 
+    public static Claims decodeToken(String pgToken, String secretKey) {
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(admin_Key)
+                    .parseClaimsJws(pgToken)
+                    .getBody();
+            return claims;
+        } catch (Exception e) {
+            // 예외 처리
+            throw new BusinessLogicException(ExceptionCode.INVALID_TOKEN);
+        }
+    }
+
 
     public KakaoReadyResponse kakaoPayReady(KakaoApproveResponse kakaoApproveResponse) {
-        System.out.println(kakaoApproveResponse);
         // 카카오페이 요청 양식
         MultiValueMap parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
@@ -59,12 +73,19 @@ public class KakaoPayService {
      */
     public KakaoApproveResponse ApproveResponse(String pgToken) {
 
+        Claims claims = decodeToken(pgToken, admin_Key);
+
+        String partnerOrderId = claims.get("partner_order_id", String.class);
+        String partnerUserId = claims.get("partner_user_id", String.class);
+        System.out.println(partnerUserId);
+        System.out.println(partnerOrderId);
+
         // 카카오 요청
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
         parameters.add("tid", kakaoReady.getTid());
         parameters.add("partner_order_id", "주문 아이디");
-        parameters.add("partner_user_id", "loveyebin077@naver.com");
+        parameters.add("partner_user_id", "momeal@naver.com");
         parameters.add("pg_token", pgToken);
 
         // 파라미터, 헤더

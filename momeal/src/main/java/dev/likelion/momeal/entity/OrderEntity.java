@@ -23,6 +23,7 @@ public class OrderEntity{
     private int price;
 
     private String orderDate;
+    private int quantity;
 
     @ManyToOne(
             targetEntity = UserEntity.class,
