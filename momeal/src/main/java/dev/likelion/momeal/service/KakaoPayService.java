@@ -19,13 +19,9 @@ public class KakaoPayService {
     static final String admin_Key = "d977d90a404ef1993971337228f56e77";
     private KakaoApproveResponse kakaoApproveResponse;
     private KakaoReadyResponse kakaoReady;
-    private final CartDao cartDao;
 
 
     public KakaoReadyResponse kakaoPayReady(KakaoApproveResponse kakaoApproveResponse) {
-        //장바구니 생성
-        this.cartDao.createCart(Integer.valueOf(kakaoApproveResponse.getItem_name()), kakaoApproveResponse.getQuantity(), kakaoApproveResponse.getPartner_user_id());
-
         // 카카오페이 요청 양식
         MultiValueMap parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
