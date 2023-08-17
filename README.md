@@ -11,6 +11,8 @@ Mobile Meal Ticket Service for Likelion 11th Hackarthon
 
 <br>
 
+<br>
+
 **Architecture**
 
 - ERD
@@ -33,7 +35,7 @@ Mobile Meal Ticket Service for Likelion 11th Hackarthon
 
   ![kakao-ready](image.assets/kakao-ready.png)
 
-  ![kakao-success](/Users/yodayeong/Desktop/Momeal_BackEnd/image.assets/kakao-success.png)
+  ![kakao-success](image.assets/kakao-success.png)
 
   ![kakao-fail](image.assets/kakao-fail.png)
 
