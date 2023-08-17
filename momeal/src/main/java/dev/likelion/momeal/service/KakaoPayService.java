@@ -1,12 +1,7 @@
 package dev.likelion.momeal.service;
 
-import dev.likelion.momeal.dao.CartDao;
 import dev.likelion.momeal.dto.KakaoApproveResponse;
 import dev.likelion.momeal.dto.KakaoReadyResponse;
-import dev.likelion.momeal.exception.BusinessLogicException;
-import dev.likelion.momeal.exception.ExceptionCode;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
-import static org.springframework.security.config.Elements.JWT;
 
 @Service
 @RequiredArgsConstructor
