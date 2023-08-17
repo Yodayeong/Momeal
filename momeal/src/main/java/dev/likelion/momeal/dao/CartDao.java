@@ -1,14 +1,10 @@
 package dev.likelion.momeal.dao;
 
-import dev.likelion.momeal.entity.CartEntity;
-import dev.likelion.momeal.entity.MenuEntity;
-import dev.likelion.momeal.entity.UserEntity;
 import dev.likelion.momeal.repository.CartRepository;
 import dev.likelion.momeal.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
