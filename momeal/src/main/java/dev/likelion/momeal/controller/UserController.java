@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,18 +28,22 @@ public class UserController {
     // 로그인
     @PostMapping("login")
     @CrossOrigin
-    public ResponseEntity<Boolean> login(@RequestBody UserDto dto){
+    public ResponseEntity<List> login(@RequestBody UserDto dto){
         boolean isAuthenticated = userService.authenticateUser(dto.getEmail(),dto.getPassword());
 
-        Map<String, Boolean> userInfo =
+        List<Object> userInfo = new ArrayList<>();
+        UserEntity user = userRepository.findByEmail(dto.getEmail());
+
+        userInfo.add(user.getUserName());
+        userInfo.add(dto.isRole());
+
         if (isAuthenticated) {
-            return new ResponseEntity<>(,HttpStatus.OK); // 200
+            return new ResponseEntity<>(userInfo,HttpStatus.OK); // 200
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // 401
         }
 
     }
-
     // 회원가입
     @PostMapping("signup")
     @CrossOrigin
