@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("user")
@@ -27,8 +29,9 @@ public class UserController {
     public ResponseEntity<Boolean> login(@RequestBody UserDto dto){
         boolean isAuthenticated = userService.authenticateUser(dto.getEmail(),dto.getPassword());
 
+        Map<String, Boolean> userInfo =
         if (isAuthenticated) {
-            return new ResponseEntity<>(dto.isRole(),HttpStatus.OK); // 200
+            return new ResponseEntity<>(,HttpStatus.OK); // 200
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED); // 401
         }
