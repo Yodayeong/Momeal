@@ -31,9 +31,9 @@ public class KakaoPayService {
         parameters.add("quantity", kakaoApproveResponse.getQuantity());
         parameters.add("total_amount", kakaoApproveResponse.getTotal_amount());
         parameters.add("tax_free_amount",kakaoApproveResponse.getTax_free_amount());
-        parameters.add("approval_url", "http://localhost:8088/kakao/success"); // 성공 시 redirect url
-        parameters.add("cancel_url", "http://localhost:8088/kakao/cancel"); // 취소 시 redirect url
-        parameters.add("fail_url", "http://localhost:8088/kakao/fail"); // 실패 시 redirect url
+        parameters.add("approval_url", "http://49.50.161.142:8088/kakao/success"); // 성공 시 redirect url
+        parameters.add("cancel_url", "http://49.50.161.142:8088/kakao/cancel"); // 취소 시 redirect url
+        parameters.add("fail_url", "http://49.50.161.142:8088/kakao/fail"); // 실패 시 redirect url
 
         // 파라미터, 헤더
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
@@ -92,3 +92,5 @@ public class KakaoPayService {
     }
 
 }
+
+

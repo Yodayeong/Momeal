@@ -37,7 +37,7 @@ public class MenuService {
         //DB에 정보 저장
         String contentType = multipartFile.getContentType();
 
-        this.menuDao.createMenu(title, price, restaurant, "/Users/yodayeong/Desktop/momeal_img/" + saveFileName);
+        this.menuDao.createMenu(title, price, restaurant, "/root/momeal_image/" + saveFileName);
     }
 
     //파일 저장 이름 만들기
@@ -55,7 +55,7 @@ public class MenuService {
 
     //fullPath 만들기
     private String getFullPath(String saveFileName) {
-        return "/Users/yodayeong/Desktop/momeal_img/" + saveFileName;
+        return "/root/momeal_image/" + saveFileName;
     }
 
     public List<MenuDto> readMenu(String restaurant) {
@@ -89,7 +89,7 @@ public class MenuService {
         //DB에 정보 저장
         String contentType = multipartFile.getContentType();
 
-        this.menuDao.updateMenuPicture(id, "/Users/yodayeong/Desktop/momeal_img/" + saveFileName);
+        this.menuDao.updateMenuPicture(id, "/root/momeal_image/" + saveFileName);
     }
 
     public void deleteMenu(int id) {

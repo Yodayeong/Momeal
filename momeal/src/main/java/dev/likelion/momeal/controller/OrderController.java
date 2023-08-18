@@ -23,6 +23,7 @@ public class OrderController {
 
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
+    @CrossOrigin
     @PostMapping("/myPage/tickets")
     public ResponseEntity<List> readMyTicket(@RequestBody UserDto dto){
         // 이메일 값 가져오기
@@ -49,7 +50,7 @@ public class OrderController {
         // OrderDto 리스트를 ResponseEntity에 담아 반환
         return ResponseEntity.ok(orderList);
     }
-
+    @CrossOrigin
     @GetMapping("/tickets/prices")
     public ResponseEntity<List> readTicketType(){
         List<Integer> prices = new ArrayList<>();

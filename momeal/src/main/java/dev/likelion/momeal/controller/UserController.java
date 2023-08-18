@@ -23,6 +23,7 @@ public class UserController {
 
     // 로그인
     @PostMapping("login")
+    @CrossOrigin
     public ResponseEntity<Boolean> login(@RequestBody UserDto dto){
         boolean isAuthenticated = userService.authenticateUser(dto.getEmail(),dto.getPassword());
 
@@ -36,6 +37,7 @@ public class UserController {
 
     // 회원가입
     @PostMapping("signup")
+    @CrossOrigin
     public ResponseEntity signupRequest(
             @RequestBody UserDto dto
     ){
@@ -44,6 +46,7 @@ public class UserController {
 
     // 이메일 중복확인
     @PostMapping("signup/duplicatecheck")
+    @CrossOrigin
     public ResponseEntity<Boolean> duplicatedEmailCheck(@RequestBody UserDto dto){
         return userService.duplicateCheckRequest(dto.getEmail());
     }

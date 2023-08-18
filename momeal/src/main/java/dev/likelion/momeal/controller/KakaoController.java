@@ -34,7 +34,7 @@ public class KakaoController {
     /**
      * 결제요청
      */
-
+    @CrossOrigin
     @PostMapping("/ready")
     public ResponseEntity<KakaoReadyResponse> readyToKakaoPay(@RequestBody KakaoApproveResponse kakaoApproveResponse) {
         KakaoReadyResponse response = kakaoPayService.kakaoPayReady(kakaoApproveResponse);
@@ -43,6 +43,7 @@ public class KakaoController {
     /**
      * 결제 진행 중 취소
      */
+    @CrossOrigin
     @GetMapping("/cancel")
     public void cancel() {
 
@@ -52,6 +53,7 @@ public class KakaoController {
     /**
      * 결제 실패
      */
+    @CrossOrigin
     @GetMapping("/fail")
     public void fail() {
         throw new BusinessLogicException(ExceptionCode.PAY_FAILED);
@@ -60,7 +62,7 @@ public class KakaoController {
     /**
     * 결제성공
      */
-
+    @CrossOrigin
     @GetMapping("/success")
     public ResponseEntity afterPayRequest(
             @RequestParam("pg_token") String pgToken

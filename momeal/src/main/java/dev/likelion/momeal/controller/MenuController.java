@@ -30,6 +30,7 @@ public class MenuController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin
     public void createMenu(
             @RequestParam("title") String title,
             @RequestParam("price") int price,
@@ -44,7 +45,7 @@ public class MenuController {
 
         this.menuService.createMenu(title, price, restaurant, multipartFile);
     }
-
+    @CrossOrigin
     @GetMapping("{restaurant}/menu")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<MenuDto> readMenu(
@@ -53,7 +54,7 @@ public class MenuController {
 
         return this.menuService.readMenu(restaurant);
     }
-
+    @CrossOrigin
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateMenu(
@@ -62,7 +63,7 @@ public class MenuController {
     ) {
         this.menuService.updateMenu(id, dto);
     }
-
+    @CrossOrigin
     @PutMapping(
             value = "/{id}/picture",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
@@ -76,7 +77,7 @@ public class MenuController {
 
         this.menuService.updateMenuPicture(id, multipartFile);
     }
-
+    @CrossOrigin
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteMenu(@PathVariable("id") int id) {
